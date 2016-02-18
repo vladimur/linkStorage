@@ -1,7 +1,12 @@
 <?php
 
+    include_once('config.php');
+    session_start();
+
     $address = $_GET['q'];
     $address = explode('/', $address);
+
+
 
     $controller = 'C_';
     switch( $address[0] )
