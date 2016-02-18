@@ -17,7 +17,7 @@
         public function before()
         {
             // $this->needLogin = true; 
-            // раскоментируйте, чтобы закрыть доступ ко всем страницам данного 
+            // раскоментировать, чтобы закрыть доступ ко всем страницам данного
             // контроллера
             parent::before();
         }
@@ -26,8 +26,6 @@
         {
             $this -> content = $this -> Template('v/V_Main.php', array());
         }
-        
-
     }
 
     
