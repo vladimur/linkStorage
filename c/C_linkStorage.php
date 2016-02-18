@@ -5,7 +5,7 @@
 //    include_once('M/M_Comment.php');
 //    include_once('M/M_Users.php');
 
-    class C_Article extends C_Base
+    class C_linkStorage extends C_Base
     {
 
         // Конструктор

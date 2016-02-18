@@ -15,22 +15,13 @@ foreach ($info as $v) {
 $action = 'action_';
 $action .= (isset($params[1])) ? $params[1] : 'index';
 
-
-
-
-$controller = new C_Article();
-
-
-
-/*switch ($params[0])
+switch ($params[0])
 {
-    case 'article':
-        $controller = new C_Article();
-        echo 'dfdf';
+    case 'linkStorage':
+        $controller = new C_linkStorage();
         break;
     default:
-        $controller = new C_Article();
-        echo 'dfdf';
-}*/
+        $controller = new C_linkStorage();
+}
 
 $controller -> Request($action, $params);
