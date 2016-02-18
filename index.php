@@ -1,33 +1,36 @@
 <?php
 
-    include_once('config.php');
-    session_start();
+include_once('config.php');
+session_start();
 
-    $address = $_GET['q'];
-    $address = explode('/', $address);
+$info   = explode('/', $_GET['q']);
+$params = array();
 
-
-
-    $controller = 'C_';
-    switch( $address[0] )
-    {
-        case 'link':
-            $controller .= 'Link_Storage';
-            break;
-
-        default:
-            $controller .= 'Link_Storage_def';
+foreach ($info as $v) {
+    if ($v != '') {
+        $params[] = $v;
     }
+}
 
-    $action = 'action_';
-    switch( $address[1] )
-    {
-        case 'all-links':
-            $action .= 'get_all_links';
-            break;
+$action = 'action_';
+$action .= (isset($params[1])) ? $params[1] : 'index';
 
-        default:
-            $action .= 'index_def';
-    }
 
-    echo $controller, '<br>', $action;
+
+
+$controller = new C_Article();
+
+
+
+/*switch ($params[0])
+{
+    case 'article':
+        $controller = new C_Article();
+        echo 'dfdf';
+        break;
+    default:
+        $controller = new C_Article();
+        echo 'dfdf';
+}*/
+
+$controller -> Request($action, $params);
