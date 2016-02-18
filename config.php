@@ -16,4 +16,4 @@ define('BASE_URL', '/project/');
 define('MYSQL_SERVER', 'localhost');
 define('MYSQL_USER', 'root');
 define('MYSQL_PASSWORD', 'mysql');
-define('MYSQL_DB', 's');
+define('MYSQL_DB', '');
