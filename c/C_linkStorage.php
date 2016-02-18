@@ -1,14 +1,10 @@
 <?php
 
-    // Конттроллер страницы чтения.
-//    include_once('M/M_Article.php');
-//    include_once('M/M_Comment.php');
-//    include_once('M/M_Users.php');
+    include_once('../m/M_SQL.php');
 
     class C_linkStorage extends C_Base
     {
 
-        // Конструктор
         function __construct()
         {		
             parent::__construct();
