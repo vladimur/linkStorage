@@ -1,13 +1,9 @@
 <?php
-    // Базовый класс контроллера.
-    abstract class C_Controller
+    abstract class C_Controller                           // Базовый класс контроллера.
     {
         protected $params;
-        // Генерация внешнего шаблона
-        protected abstract function render();
-
-        // Функция отрабатывающая до основного метода
-        protected abstract function before();
+        protected abstract function render();             // Генерация внешнего шаблона
+        protected abstract function before();             // Функция отрабатывающая до основного метода
 
         public function Request($action, $params)
         {
@@ -17,41 +13,33 @@
             $this -> render();
         }
 
-        // Запрос произведен методом GET?
         protected function IsGet()
         {
             return $_SERVER['REQUEST_METHOD'] == 'GET';
         }
 
-        // Запрос произведен методом POST?
         protected function IsPost()
         {
             return $_SERVER['REQUEST_METHOD'] == 'POST';
         }
 
-        // Генерация HTML шаблона в строку.
-        protected function Template($fileName, $vars = array())
+        protected function Template($fileName, $vars = array())  // Генерация HTML шаблона в строку.
         {
-            // Установка переменных для шаблона.
-            foreach ($vars as $k => $v) {
+            foreach ($vars as $k => $v) {                        // Установка переменных для шаблона.
                 $$k = $v;
             }
 
-            // Генерация HTML в строку.
-            ob_start();
+            ob_start();                                          // Генерация HTML в строку.
             include "$fileName";
             return ob_get_clean();	
         }
-        
-        // Если вызвали метод, которого нет - завершаем работу
-        public function __call($name, $params)
+
+        public function __call($name, $params)                   // Если вызвали метод, которого нет - завершаем работу
         {
-            die('sosi chlen');
+            die('404');
         }
-        
-        
-        // Переадресация
-        protected function redirect($url)
+
+        protected function redirect($url)                        // Переадресация
         {
             if($url[0] == '/') $url = BASE_URL.substr($url, 1);
             header("location: $url");

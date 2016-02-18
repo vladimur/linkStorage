@@ -1,15 +1,13 @@
 <?php
 
-    // Базовый контроллер сайта.
-    abstract class C_Base extends C_Controller
+    abstract class C_Base extends C_Controller    // Базовый контроллер сайта.
     {
-        protected $title;		// заголовок страницы
-        protected $content;		// содержание страницы
-        protected $needLogin;	// необходима ли авторизация
-        protected $user;		// авторизованный пользователь || null
+        protected $title;		                  // заголовок страницы
+        protected $content;		                  // содержание страницы
+        protected $needLogin;                  	  // необходима ли авторизация
+        protected $user;		                  // авторизованный пользователь || null
 
-        // Конструктор.
-        function __construct()
+        function __construct()                    // Конструктор.
         {
             $this->needLogin = false;
             //$this->user = M_Users::Instance() -> GetUser();
@@ -24,8 +22,7 @@
             $this->content = '';
         }
 
-        // Генерация базового шаблонаы
-        public function render()
+        public function render()                 // Генерация базового шаблонаы
         {
             $vars = array('title' => $this -> title, 'content' => $this -> content);	
             $page = $this -> Template('v/V_Index.php', $vars);

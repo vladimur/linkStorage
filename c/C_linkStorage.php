@@ -24,13 +24,6 @@
         
         public function action_index()
         {
-//            if (!$_SESSION['online']) {
-//                $mUsers = M_Users::Instance();
-//                $mUsers -> ClearSessions();
-//                $mUsers -> Logout();
-//                $_SESSION['online'] = false;
-//            }
-            //echo 'dgfgfg';
             $this -> content = $this -> Template('v/V_Main.php', array());
         }
         
