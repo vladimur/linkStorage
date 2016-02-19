@@ -2,7 +2,7 @@
 
     include_once('../m/M_SQL.php');
 
-    class C_linkStorage extends C_Base
+    class C_linkStorageAnon extends C_Base
     {
 
         function __construct()
@@ -12,9 +12,7 @@
 
         public function before()
         {
-            // $this->needLogin = true; 
-            // раскоментировать, чтобы закрыть доступ ко всем страницам данного
-            // контроллера
+            // $this->needLogin = true;
             parent::before();
         }
         

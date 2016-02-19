@@ -31,17 +31,17 @@ class M_linkStorage
         return $this -> msql -> Select($query);
     }
 
-    public function Allmy($login)
+    public function AllMy($login)
     {
         // Запрос б/д
         $login = trim(htmlspecialchars($login));
-        $query = "SELECT * FROM Articles ORDER BY id DESC";
+        $query = "SELECT * FROM links WHERE author='$login'";
         $result = $this -> msql -> Select($query);
         $arr = $result;
         for($i = 0; $i < count($arr) - 1;$i++) {
             if ($arr[$i]['user'] == $login) $qwe[] = $arr[$i];
         }
-        return $qwe;
+        return $arr;
     }
 
     // Выбрать одну ссылку
