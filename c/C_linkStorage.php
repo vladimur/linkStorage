@@ -20,6 +20,16 @@
         
         public function action_index()
         {
-            $this -> content = $this -> Template('v/V_Index.php', array());
+            $links = M_linkStorage::Instance();
+            $allLinks = $links->All();
+
+            foreach($allLinks as $key => $link)
+            {
+                if ($link['status'] == 'private') {
+                    unset($allLinks[$key]);
+                }
+            }
+
+            $this -> content = $this -> Template('v/V_Index.php', array( 'links' => $allLinks ));
         }
     }

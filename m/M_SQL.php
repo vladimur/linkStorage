@@ -1,132 +1,97 @@
 <?php
-// Модель для работы с базой данных
-class M_MySQL
-{
-    // Экземпляр класса
-    private static $instance;
 
-    // Cоздание экземпляра
+class M_SQL
+{
+    private static $instance;
+    private $db;
+
     public static function Instance()
     {
-        if (self::$instance == null) self::$instance = new M_MySQL();
+        if(self::$instance == null) self::$instance = new M_SQL();
         return self::$instance;
     }
 
-    // Подключение к базе данных
     private function __construct()
     {
-        // Языковая настройка.
-        // Устанавливаем нужную локаль (для дат, денег, запятых и пр.)
-        setlocale(LC_ALL, 'ru_RU.UTF-8');
-        // Устанавливаем кодировку строк
-        mb_internal_encoding('UTF-8');
+        setlocale(LC_ALL, 'ru_RU.UTF8');
 
-        // Подключение к БД.
-        mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD) or die('No connect with data base');
-        mysql_query('SET NAMES utf8');
-        mysql_select_db(MYSQL_DB) or die('No data base');
+        $this->db = new PDO('mysql:host=' .MYSQL_SERVER . ';dbname='.MYSQL_DB, MYSQL_USER, MYSQL_PASSWORD);
+        $this->db->exec('SET NAMES UTF8');
+        $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
-    // Выбрать кортеж
     public function Select($query)
     {
-        // $query - SQL запрос
-        $result = mysql_query($query);
-        if (!$result) die(mysql_error());
+        $q = $this -> db -> prepare($query);
+        $q -> execute();
 
-        // Сложить данные запроса в массив
-        $tmp = mysql_num_rows($result);
-        $arr = array();
-        for ($i = 0; $i < $tmp; $i++) {
-            $row = mysql_fetch_assoc($result);
-            $arr[] = $row;
+        if($q -> errorCode() != PDO::ERR_NONE) {
+            $info = $q -> errorInfo();
+            die($info[2]);
         }
-
-        // Вернуть массив выбранных объектов
-        return $arr;
+        return $q -> fetchAll();
     }
 
-    // Вставить кортеж
-    public function Insert($table, $object)
+    public function Insert($table , $object)
     {
-        // $table - имя таблицы
-        // $object - ассоциативный массив "имя столбца - значение"
-
-        // Куда вставлять
         $columns = array();
 
-        // Что вставлять
-        $values = array();
-
-        // Складываем в отдельные массивы ключи и значения
-        foreach ($object as $key => $value) {
-            $key = mysql_real_escape_string($key."");
+        foreach($object as $key => $value) {
             $columns[] = $key;
+            $masks[]   = ":$key";
 
-            if ($value == null) {
-                $values[] = 'NULL';
-            } else {
-                $value = mysql_real_escape_string($value."");
-                $values[] = "'$value'";
-            }
+            if($value === null) $object[$key] = 'NULL';
         }
 
-        // Собираем в строку
-        $columns_str = implode(",", $columns);
-        $values_str = implode(",", $values);
+        $columns_s = implode(',', $columns);
+        $masks_s   = implode(',', $masks);
 
-        // Запрос б/д
-        $query = "INSERT INTO $table ($columns_str) VALUES ($values_str)";
-        $result = mysql_query($query);
-        if (!$result) die(mysql_error());
+        $query = "INSERT INTO $table ($columns_s) VALUES ($masks_s)";
 
-        // Возвращаем id новой строки
-        return mysql_insert_id();
+        $q = $this -> db -> prepare($query);
+        $q -> execute($object);
+
+        if($q -> errorCode() != PDO::ERR_NONE) {
+            $info = $q -> errorInfo();
+            die($info[2]);
+        }
+        return $this -> db -> lastInsertId();
     }
 
-    public function Update($table, $object, $where)
+    public function Update($table,$object,$where)
     {
-        // $table - имя таблицы
-        // $object - ассоциативный массив "имя столбца - значение"
-        // $where - куда вставлять
+        $sets = array();
 
-        $set = array();
+        foreach($object as $key => $value) {
 
-        // Складываем в массив ключи и их значения
-        foreach ($object as $key => $value) {
-            $key = mysql_real_escape_string($key."");
+            $sets[] = "$key=:$key";
 
-            if ($value == null) {
-                $set[] = "$value=NULL";
-            } else {
-                $value = mysql_real_escape_string($value."");
-                $set[] = "$key='$value'";
-            }
+            if($value === NULL) $object[$key]='NULL';
         }
 
-        // Собираем в строку
-        $set_str = implode(",", $set);
+        $sets_s = implode(',',$sets);
+        $query  = "UPDATE $table SET $sets_s WHERE $where";
 
-        // Формируем запрос
-        $query = "UPDATE $table SET $set_str WHERE $where";
-        $result = mysql_query($query);
-        if (!$result) die(mysql_error());
+        $q = $this -> db -> prepare($query);
+        $q -> execute($object);
 
-        // Возвращаем число изменённых строк
-        return mysql_affected_rows();
+        if($q -> errorCode() != PDO::ERR_NONE) {
+            $info = $q -> errorInfo();
+            die($info[2]);
+        }
+        return $q -> rowCount();
     }
 
     public function Delete($table, $where)
     {
-        // $table - имя таблицы
-        // $where - откуда удалять
-
-        // Формируем запрос
         $query = "DELETE FROM $table WHERE $where";
-        $result = mysql_query($query);
-        if (!$result) die(mysql_error());
+        $q     = $this -> db -> prepare($query);
+        $q -> execute();
 
-        // Возвращаем число удалённых строк
-        return mysql_affected_rows();
+        if($q -> errorCode() != PDO::ERR_NONE) {
+            $info = $q->errorInfo();
+            die($info[2]);
+        }
+        return $q -> rowCount();
     }
 }

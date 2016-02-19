@@ -15,5 +15,5 @@ function __autoload($classname)
 define('BASE_URL', 'linkStorage.loc');
 define('MYSQL_SERVER', 'localhost');
 define('MYSQL_USER', 'root');
-define('MYSQL_PASSWORD', 'mysql');
+define('MYSQL_PASSWORD', '');
 define('MYSQL_DB', 'linkStorage');

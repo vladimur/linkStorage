@@ -6,6 +6,10 @@
 </head>
 
 <body>
-<?=$content;?>
-</body
+
+<div id = "content">
+    <?=$content;?>
+</div>
+
+</body>
 </html>

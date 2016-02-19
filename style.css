@@ -4,6 +4,12 @@ body
     color: white;
 }
 
+#content
+{
+    width: 960px;
+    margin: auto;
+}
+
 a
 {
     display: inline-block;
