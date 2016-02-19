@@ -1,6 +1,6 @@
 <?php
 // Модель для работы с пользователями
-include_once('m/M_MySQL.php');
+include_once('../m/M_SQL.php');
 
 class M_Users
 {
