@@ -23,22 +23,3 @@
             $this -> content = $this -> Template('v/V_Main.php', array());
         }
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
