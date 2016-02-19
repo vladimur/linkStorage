@@ -20,6 +20,6 @@
         
         public function action_index()
         {
-            $this -> content = $this -> Template('v/V_Main.php', array());
+            $this -> content = $this -> Template('v/V_Index.php', array());
         }
     }

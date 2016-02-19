@@ -1,4 +1,11 @@
-<div>
-    <p>Hello, this is the main page of linkStorage</p>
-    <p>You can ....</p>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>linkStorage</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+</head>
+
+<body>
+<?=$content;?>
+</body
+</html>

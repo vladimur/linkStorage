@@ -1,9 +1,25 @@
 body
 {
     background-image: url("img/background.png");
+    color: white;
 }
 
-div
+a
 {
+    display: inline-block;
+    padding: 5px;
+    background: #6f0808;
     color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: #000;
+}
+
+a:active
+{
+    background: #ccc;
 }

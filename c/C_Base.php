@@ -25,7 +25,7 @@
         public function render()                 // Генерация базового шаблонаы
         {
             $vars = array('title' => $this -> title, 'content' => $this -> content);	
-            $page = $this -> Template('v/V_Index.php', $vars);
+            $page = $this -> Template('v/V_Main.php', $vars);
             echo $page;
         }	
     }
