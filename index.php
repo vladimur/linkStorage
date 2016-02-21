@@ -17,8 +17,11 @@ $action .= (isset($params[1])) ? $params[1] : 'index';
 
 switch ($params[0])
 {
-    case 'linkStorage':
+    case 'anon':
         $controller = new C_linkStorageAnon();
+        break;
+    case 'user':
+        $controller = new C_linkStorageUser();
         break;
     default:
         $controller = new C_linkStorageAnon();

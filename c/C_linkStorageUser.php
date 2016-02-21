@@ -22,4 +22,12 @@
             $allLinks = $links->AllMy('user');
             $this -> content = $this -> Template('v/V_Index.php', array( 'links' => $allLinks ));
         }
+
+        public function action_registration()
+        {
+
+
+            $this -> content = $this -> Template('v/V_Registration.php', array());
+        }
+
     }

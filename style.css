@@ -29,3 +29,87 @@ a:active
 {
     background: #ccc;
 }
+
+#v_registration
+{
+    text-align: center;
+}
+
+#v_registration > form > div
+{
+    margin: 30px;
+}
+
+#v_registration > form > div div
+{
+    display: inline-block;
+}
+
+.reg_form_item_name
+{
+    width: 200px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.reg_form_item_input input
+{
+    border-radius: 10px;
+    border: 0;
+    background-color: #cccccc;
+    height: 30px;
+    color: #333;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#button
+{
+    text-align: right;
+    width: 670px;
+}
+
+button
+{
+    border: 0;
+    padding: 5px;
+    background: #6f0808;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+}
+
+button:hover
+{
+    color: #000;
+}
+
+button:active
+{
+    background: #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
