@@ -1,5 +1,10 @@
 <?php
-  var_dump($qwe);
+
+    if (!$error)
+    {
+         
+    }
+
 ?>
 
 <div id = "v_registration">

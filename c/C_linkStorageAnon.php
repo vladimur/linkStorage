@@ -33,7 +33,16 @@
 
         public function action_registration()
         {
+            if ($_POST['e-mail']) {
+                $mUser = M_Users::Instance();
+                if ($mUser->Registration($_POST['login'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['e-mail']))
+                {
+                    $error = false;
+                } else {
+                    $error = true;
+                }
+            }
 
-            $this -> content = $this -> Template('v/V_Registration.php', array("qwe" => $_POST));
+            $this -> content = $this -> Template('v/V_Registration.php', array("error" => $error));
         }
     }

@@ -133,13 +133,14 @@ class M_Users
         return ($this -> onlineMap['id_user'] != null);
     }
 
-    public function Registration($login, $pass, $name)
+    public function Registration($login, $pass, $first_name, $last_name, $e_mail)
     {
         $solt = "adsfghfgh";
         // Проверили
         $login = trim(htmlspecialchars($login));
         $pass = trim(htmlspecialchars($pass));
-        $name = trim(htmlspecialchars($name));
+        $name = trim(htmlspecialchars($first_name));
+        $name = trim(htmlspecialchars($last_name));
 
         $query = "SELECT * FROM users WHERE login = '$login'";
         $result = $this -> msql -> Select($query);
@@ -151,8 +152,10 @@ class M_Users
             // Сложили в массив
             $user['login'] = $login;
             $user['password'] = md5($pass.$solt);
-            $user['id_role'] = 3;
-            $user['name'] = $name;
+            $user['status'] = 'user';
+            $user['first_name'] = $first_name;
+            $user['last_name'] = $last_name;
+            $user['e_mail'] = $e_mail;
 
             // Пложиди в б/д
             $this -> msql -> Insert('users', $user);
