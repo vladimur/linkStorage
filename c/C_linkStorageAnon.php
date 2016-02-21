@@ -34,6 +34,6 @@
         public function action_registration()
         {
 
-            $this -> content = $this -> Template('v/V_Registration.php', array());
+            $this -> content = $this -> Template('v/V_Registration.php', array("qwe" => $_POST));
         }
     }

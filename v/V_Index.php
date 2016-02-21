@@ -1,4 +1,4 @@
-<div id = "v_index">
+<div>
     <p>Hello, this is the main page of linkStorage. Here you can see all links, that was not signed as "private".</p>
 
     <?php
