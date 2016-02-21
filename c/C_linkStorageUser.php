@@ -2,7 +2,7 @@
 
     include_once('../m/M_SQL.php');
 
-    class C_linkStorageAnon extends C_Base
+    class C_linkStorageUser extends C_Base
     {
 
         function __construct()
