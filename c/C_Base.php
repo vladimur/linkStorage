@@ -1,16 +1,16 @@
 <?php
 
-    abstract class C_Base extends C_Controller    // Базовый контроллер сайта.
+    abstract class C_Base extends C_Controller
     {
-        protected $title;		                  // заголовок страницы
-        protected $content;		                  // содержание страницы
-        protected $needLogin;                  	  // необходима ли авторизация
-        protected $user;		                  // авторизованный пользователь || null
+        protected $title;
+        protected $content;
+        protected $needLogin;
+        protected $user;
 
-        function __construct()                    // Конструктор.
+        function __construct()
         {
             $this->needLogin = false;
-            //$this->user = M_Users::Instance() -> GetUser();
+            $this->user = M_Users::Instance() -> GetUser();
         }
 
         protected function before()
@@ -18,11 +18,11 @@
             if($this -> needLogin && $this -> user === null) 
                 $this -> redirect('/user/login');
 	
-            $this->title = 'Блог';
+            $this->title = 'LinkStorage';
             $this->content = '';
         }
 
-        public function render()                 // Генерация базового шаблонаы
+        public function render()
         {
             $vars = array('title' => $this -> title, 'content' => $this -> content);	
             $page = $this -> Template('v/V_Main.php', $vars);

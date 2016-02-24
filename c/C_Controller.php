@@ -1,9 +1,9 @@
 <?php
-    abstract class C_Controller                           // Базовый класс контроллера.
+    abstract class C_Controller
     {
         protected $params;
-        protected abstract function render();             // Генерация внешнего шаблона
-        protected abstract function before();             // Функция отрабатывающая до основного метода
+        protected abstract function render();
+        protected abstract function before();
 
         public function Request($action, $params)
         {
@@ -23,23 +23,23 @@
             return $_SERVER['REQUEST_METHOD'] == 'POST';
         }
 
-        protected function Template($fileName, $vars = array())  // Генерация HTML шаблона в строку.
+        protected function Template($fileName, $vars = array())
         {
-            foreach ($vars as $k => $v) {                        // Установка переменных для шаблона.
+            foreach ($vars as $k => $v) {
                 $$k = $v;
             }
 
-            ob_start();                                          // Генерация HTML в строку.
+            ob_start();
             include "$fileName";
             return ob_get_clean();	
         }
 
-        public function __call($name, $params)                   // Если вызвали метод, которого нет - завершаем работу
+        public function __call($name, $params)
         {
             die('404');
         }
 
-        protected function redirect($url)                        // Переадресация
+        protected function redirect($url)
         {
             if($url[0] == '/') $url = BASE_URL.substr($url, 1);
             header("location: $url");
