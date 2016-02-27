@@ -1,5 +1,5 @@
 <div>
-    <p>Hello, this is the main page of linkStorage. Here you can see all links, that was not signed as "private".</p>
+    <p>Hello, this is the you own page of linkStorage. Here you can see all your links.</p>
 
     <?php
 
@@ -18,6 +18,9 @@
             echo "</tr>";
 
         }
+
+        echo "<td rowspan='2'>" . '<a href="/user/edit_links">edit</a>' . "</td>";
+
         echo "<br>";
 
         echo "</table>";

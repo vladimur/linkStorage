@@ -118,7 +118,7 @@ class M_Users
         if ($id_user == null) return null;
 
         // Достаем из б/д по id
-        $t = "SELECT * FROM users WHERE id_user = '%d'";
+        $t = "SELECT * FROM users WHERE id = '%d'";
         $query = sprintf($t, $id_user);
         $result = $this -> msql -> Select($query);
         return $result[0];
@@ -131,6 +131,68 @@ class M_Users
         $query = sprintf($t, ($login));
         $result = $this -> msql -> Select($query);
         return $result[0];
+    }
+
+    // Получение id текущего пользователя
+    public function GetUID()
+    {
+
+        // Проверка кеша
+        if ($this -> uid != null) return $this -> uid;
+
+        // Берем по текущей сессии
+        $sid = $this -> GetSID();
+        if ($sid == null) return null;
+
+        // Запрос
+        $t = "SELECT id_user FROM sessions WHERE sid = '%s'";
+        $query = sprintf($t, $sid);
+        $result = $this -> msql -> Select($query);
+
+        // Если сессию не нашли - значит пользователь не авторизован
+        if (count($result) == 0) return null;
+
+        // Если нашли - запоминм ее
+        $this -> uid = $result[0]['id_user'];
+        return $this -> uid;
+    }
+
+    // Получение идентификатора текущей сессии
+    private function GetSID()
+    {
+        // Кеш
+        if ($this -> sid != null) return $this -> sid;
+
+        // Сессия
+        $sid = $_SESSION['sid'];
+
+        // Если нашли - обновляем time_last в базе
+        if ($sid != null) {
+            $session = array();
+            $session['time_last'] = date('Y-m-d H:i:s');
+            $t = "sid = '%s'";
+            $where = sprintf($t, ($sid));
+            $affected_rows = $this -> msql -> Update('sessions', $session, $where);
+
+            if ($affected_rows == 0) {
+                $t = "SELECT count(*) FROM sessions WHERE sid = '%s'";
+                $query = sprintf($t, ($sid));
+                $result = $this -> msql -> Select($query);
+
+                if ($result[0]['count(*)'] == 0) $sid = null;
+            }
+        }
+
+        // Если $_SESSION['sid'] = null достаем из cookies
+        if ($sid == null && isset($_COOKIE['login'])) {
+            $user = $this -> GetByLogin($_COOKIE['login']);
+            if ($user != null && $user['password'] == $_COOKIE['password'])
+                $sid = $this -> OpenSession($user['id_user']);
+        }
+
+        // Помещаем в кеш
+        if ($sid != null) $this -> sid = $sid;
+        return $sid;
     }
 
     // Проверка наличия привилегии
@@ -164,66 +226,6 @@ class M_Users
         return ($this -> onlineMap['id_user'] != null);
     }
 
-    // Получение id текущего пользователя
-    public function GetUID()
-    {
-        // Проверка кеша
-        if ($this -> uid != null) return $this -> uid;
-
-        // Берем по текущей сессии
-        $sid = $this -> GetSID();
-        if ($sid == null) return null;
-
-        // Запрос
-        $t = "SELECT id_user FROM sessions WHERE sid = '%s'";
-        $query = sprintf($t, mysql_real_escape_string($sid));
-        $result = $this -> msql -> Select($query);
-
-        // Если сессию не нашли - значит пользователь не авторизован
-        if (count($result) == 0) return null;
-
-        // Если нашли - запоминм ее
-        $this -> uid = $result[0]['id_user'];
-        return $this -> uid;
-    }
-
-    // Получение идентификатора текущей сессии
-    private function GetSID()
-    {
-        // Кеш
-        if ($this -> sid != null) return $this -> sid;
-
-        // Сессия
-        $sid = $_SESSION['sid'];
-
-        // Если нашли - обновляем time_last в базе
-        if ($sid != null) {
-            $session = array();
-            $session['time_last'] = date('Y-m-d H:i:s');
-            $t = "sid = '%s'";
-            $where = sprintf($t, mysql_real_escape_string($sid));
-            $affected_rows = $this -> msql -> Update('sessions', $session, $where);
-
-            if ($affected_rows == 0) {
-                $t = "SELECT count(*) FROM sessions WHERE sid = '%s'";
-                $query = sprintf($t, mysql_real_escape_string($sid));
-                $result = $this -> msql -> Select($query);
-
-                if ($result[0]['count(*)'] == 0) $sid = null;
-            }
-        }
-
-        // Если $_SESSION['sid'] = null достаем из cookies
-        if ($sid == null && isset($_COOKIE['login'])) {
-            $user = $this -> GetByLogin($_COOKIE['login']);
-            if ($user != null && $user['password'] == $_COOKIE['password'])
-                $sid = $this -> OpenSession($user['id_user']);
-        }
-
-        // Помещаем в кеш
-        if ($sid != null) $this -> sid = $sid;
-        return $sid;
-    }
 
     // Открытие сессии
     private function OpenSession($id_user)
