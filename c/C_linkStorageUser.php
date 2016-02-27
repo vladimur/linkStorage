@@ -18,13 +18,13 @@ class C_linkStorageAnon extends C_Base
 
     public function action_own_page()
     {
-        $mUsers = M_Users::Instance()->GetUser();
-
-        var_dump($mUsers);
-
-        $links = M_linkStorage::Instance();
-        $allLinks = $links->Allmy('user');
-        $this -> content = $this -> Template('v/V_Index.php', array( 'links' => $allLinks ));
+//        $mUsers = M_Users::Instance()->GetUser();
+//
+//        var_dump($mUsers);
+//
+//        $links = M_linkStorage::Instance();
+//        $allLinks = $links->Allmy('user');
+        $this -> content = $this -> Template('v/V_MyPage.php', array());
     }
 
 }
