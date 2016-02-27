@@ -76,12 +76,13 @@ class M_Users
     public function Login($login, $password, $remember = true)
     {
         $solt = "adsfghfgh";
+
         // вытаскиваем пользователя из БД
         $user = $this -> GetByLogin($login);
         if ($user == null) return false;
 
         // Запоминаем id и сверяем пароль
-        $id_user = $user['id_user'];
+        $id_user = $user['id'];
         if ($user['password'] != md5($password.$solt)) return false;
 
         // Запоминаем имя и пароль
@@ -127,7 +128,7 @@ class M_Users
     public function GetByLogin($login)
     {
         $t = "SELECT * FROM users WHERE login = '%s'";
-        $query = sprintf($t, mysql_real_escape_string($login));
+        $query = sprintf($t, ($login));
         $result = $this -> msql -> Select($query);
         return $result[0];
     }

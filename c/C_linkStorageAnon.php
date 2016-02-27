@@ -60,7 +60,10 @@ class C_linkStorageAnon extends C_Base
                 $_SESSION['online'] = true;
                 $this -> redirect("/user/own_page");
                 die();
-            }
+            } else
+                {
+                    echo "    Something wrong :(    ";
+                }
         }
 
         $this -> content = $this -> Template('v/V_Login.php', array());

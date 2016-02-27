@@ -12,7 +12,7 @@ function __autoload($classname)
     }
 }
 
-define('BASE_URL', 'linkstorage.loc');
+define('BASE_URL', 'linkstorage.loc/');
 define('MYSQL_SERVER', 'localhost');
 define('MYSQL_USER', 'root');
 define('MYSQL_PASSWORD', '');
