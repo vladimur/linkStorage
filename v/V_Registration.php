@@ -1,9 +1,3 @@
-<?php
-
-    var_dump(!$error);
-
-?>
-
 <div id = "v_registration">
     <p>Hello, this is the registration page of linkStorage. Here you can sign up.</p>
 

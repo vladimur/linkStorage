@@ -96,11 +96,20 @@ button:active
 
 
 
+#v_login
+{
+    text-align: center;
+}
 
+#v_login > form > div
+{
+    margin: 30px;
+}
 
-
-
-
+#v_login > form > div div
+{
+    display: inline-block;
+}
 
 
 

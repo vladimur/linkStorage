@@ -54,7 +54,6 @@ class M_Users
         $query = "SELECT * FROM users WHERE login = '$login'";
         $result = $this -> msql -> Select($query);
         $error = $result[0];
-        var_dump($result);
 
         if ($error != null) {
             return false;

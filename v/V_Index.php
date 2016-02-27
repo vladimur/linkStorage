@@ -26,6 +26,6 @@
 
     ?>
 
-    <p>You also may <a href="/anon/registration">registration</a> or <a href="">login</a></p>
+    <p>You also may <a href="/anon/registration">registration</a> or <a href="/anon/login">login</a></p>
 
 </div>
