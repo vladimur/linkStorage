@@ -20,7 +20,7 @@ class M_linkStorage
 
     public function All()
     {
-        $query = "SELECT * FROM links ORDER BY link_id";
+        $query = "SELECT * FROM links ORDER BY id";
         return $this -> msql -> Select($query);
     }
 

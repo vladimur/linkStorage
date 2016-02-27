@@ -38,8 +38,39 @@ class M_Users
     // Список всех пользователей
     public function All()
     {
-        $query = "SELECT * FROM users ORDER BY id_user DESC";
+        $query = "SELECT * FROM users ORDER BY id DESC";
         return $this -> msql -> Select($query);
+    }
+
+    public function Registration($login, $pass, $first_name, $last_name, $e_mail)
+    {
+        $solt = "adsfghfgh";
+        // Проверили
+        $login = trim(htmlspecialchars($login));
+        $pass = trim(htmlspecialchars($pass));
+        $first_name = trim(htmlspecialchars($first_name));
+        $last_name = trim(htmlspecialchars($last_name));
+
+        $query = "SELECT * FROM users WHERE login = '$login'";
+        $result = $this -> msql -> Select($query);
+        $error = $result[0];
+        var_dump($result);
+
+        if ($error != null) {
+            return false;
+        } else {
+            // Сложили в массив
+            $user['login'] = $login;
+            $user['password'] = md5($pass.$solt);
+            $user['status'] = 'user';
+            $user['first_name'] = $first_name;
+            $user['last_name'] = $last_name;
+            $user['e_mail'] = $e_mail;
+
+            // Пложиди в б/д
+            $this -> msql -> Insert('users', $user);
+            return true;
+        }
     }
 
     // Авторизация
@@ -131,36 +162,6 @@ class M_Users
         }
 
         return ($this -> onlineMap['id_user'] != null);
-    }
-
-    public function Registration($login, $pass, $first_name, $last_name, $e_mail)
-    {
-        $solt = "adsfghfgh";
-        // Проверили
-        $login = trim(htmlspecialchars($login));
-        $pass = trim(htmlspecialchars($pass));
-        $name = trim(htmlspecialchars($first_name));
-        $name = trim(htmlspecialchars($last_name));
-
-        $query = "SELECT * FROM users WHERE login = '$login'";
-        $result = $this -> msql -> Select($query);
-        $error = $result[0];
-
-        if ($error != null) {
-            return false;
-        } else {
-            // Сложили в массив
-            $user['login'] = $login;
-            $user['password'] = md5($pass.$solt);
-            $user['status'] = 'user';
-            $user['first_name'] = $first_name;
-            $user['last_name'] = $last_name;
-            $user['e_mail'] = $e_mail;
-
-            // Пложиди в б/д
-            $this -> msql -> Insert('users', $user);
-            return true;
-        }
     }
 
     // Получение id текущего пользователя

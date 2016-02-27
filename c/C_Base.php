@@ -10,7 +10,7 @@ abstract class C_Base extends C_Controller
     function __construct()
     {
         $this->needLogin = false;
-        //$this->user = M_Users::Instance() -> GetUser();
+        $this->user = M_Users::Instance() -> GetUser();
     }
 
     protected function before()

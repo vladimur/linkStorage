@@ -11,7 +11,7 @@
 
                 echo "<tr>";
 
-                if ($key != 'status' && $key != 'link_id') {
+                if ($key != 'status' && $key != 'id') {
                     echo "<td>" . $key . "</td><td>&nbsp;&nbsp;&nbsp;</td><td>" .  $value, "</td>";
                 }
 

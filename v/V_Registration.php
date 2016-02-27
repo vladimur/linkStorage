@@ -1,9 +1,6 @@
 <?php
 
-    if (!$error)
-    {
-         
-    }
+    var_dump(!$error);
 
 ?>
 
