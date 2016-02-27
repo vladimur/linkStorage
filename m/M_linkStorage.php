@@ -40,7 +40,7 @@ class M_linkStorage
     {
         $id = (int)$id_art;
         if ($id < 0) return false;
-        $t = "SELECT * FROM Articles WHERE id = '%d'";
+        $t = "SELECT * FROM links WHERE id = '%d'";
         $query = sprintf($t, $id);
         $result = $this -> msql -> Select($query);
         return $result[0];
@@ -56,27 +56,30 @@ class M_linkStorage
 
         if ($title == '' || $content == '') return false;
 
-        $art = array();
-        $art['title'] = $title;
-        $art['content'] = $content;
+        $links = array();
+        $links['title'] = $title;
+        $links['content'] = $content;
 
         $t = "id = '%d'";
         $where = sprintf($t, $id);
-        $this -> msql -> Update('Articles', $art, $where);
+        $this -> msql -> Update('links', $links, $where);
         return true;
     }
 
-    public function Delete($id_art)
+    public function Delete($id_link)
     {
-        $id = (int)$id_art;
+        $id = (int)$id_link;
         if ($id < 0) return false;
 
         $t = "id = '%d'";
         $where = sprintf($t, $id);
-        $this -> msql -> Delete('Articles', $where);
+        $this -> msql -> Delete('links', $where);
         return true;
     }
 
+
+
+    // чо происходит ?
     public function Add($title, $content, $user)
     {
         $title = trim(htmlspecialchars($title));
@@ -92,7 +95,7 @@ class M_linkStorage
         $art['data'] = date("Y-m-d H:i:s");
         $art['user'] = $user;
 
-        $this -> msql -> Insert('Articles', $art);
+        $this -> msql -> Insert('links', $art);
         return true;
     }
 
