@@ -36,9 +36,9 @@ class M_linkStorage
         return $arr;
     }
 
-    public function Get($id_art)
+    public function Get($id)
     {
-        $id = (int)$id_art;
+        $id = (int)$id;
         if ($id < 0) return false;
         $t = "SELECT * FROM links WHERE id = '%d'";
         $query = sprintf($t, $id);
@@ -46,12 +46,12 @@ class M_linkStorage
         return $result[0];
     }
 
-    public function Edit($id_art, $title, $content)
+    public function Edit($id_link, $title, $content)
     {
 
         $title = trim(htmlspecialchars($title));
         $content = trim(htmlspecialchars($content));
-        $id = (int)$id_art;
+        $id = (int)$id_link;
         if ($id < 0) return false;
 
         if ($title == '' || $content == '') return false;
@@ -87,15 +87,15 @@ class M_linkStorage
 
         if ($title == '' || $content =='') return false;
 
-        $art = array();
-        $art['title'] = $title;
-        $art['content'] = $content;
-        $art['user'] = $_COOKIE['greeting'];
+        $link = array();
+        $link['title'] = $title;
+        $link['content'] = $content;
+        $link['user'] = $_COOKIE['greeting'];
         date_default_timezone_set('Asia/Novosibirsk');
-        $art['data'] = date("Y-m-d H:i:s");
-        $art['user'] = $user;
+        $link['data'] = date("Y-m-d H:i:s");
+        $link['user'] = $user;
 
-        $this -> msql -> Insert('links', $art);
+        $this -> msql -> Insert('links', $link);
         return true;
     }
 
