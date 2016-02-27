@@ -21,7 +21,7 @@ switch ($params[0])
         $controller = new C_linkStorageAnon();
         break;
     case 'user':
-        $controller = new C_linkStorageUser();
+        $controller = new C_linkStorageAnon();
         break;
     default:
         $controller = new C_linkStorageAnon();
