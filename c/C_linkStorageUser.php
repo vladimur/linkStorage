@@ -30,4 +30,12 @@ class C_linkStorageUser extends C_Base
     {
         $this -> content = $this -> Template('v/V_EditLink.php', array());
     }
+
+    public function action_logout()
+    {
+        $mUsers = M_Users::Instance();
+        $mUsers -> ClearSessions();
+        $mUsers -> Logout();
+        $this->redirect('/');
+    }
 }

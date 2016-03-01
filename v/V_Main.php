@@ -9,6 +9,27 @@
 
 <body>
 
+<nav>
+
+    <a href="/">Main Page</a>
+
+    <?php
+    if ($_SESSION['sid']) {
+    ?>
+        <a href="/user/own_page">My Page</a>
+        <a href="/user/logout">Log out</a>
+    <?php
+    } else {
+    ?>
+        <a href="/anon/login">Login</a>
+        <a href="/anon/registration">Registration</a>
+    <?php
+    }
+    ?>
+
+
+</nav>
+
 <div id = "content">
     <?=$content;?>
 </div>
