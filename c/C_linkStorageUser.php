@@ -30,10 +30,10 @@ class C_linkStorageUser extends C_Base
     {
 
         $links_id = $this->params[2];
-        var_dump($links_id);
+        $links = M_linkStorage::Instance();
+        $Link = $links->Get($links_id);
 
-
-        $this -> content = $this -> Template('v/V_EditLink.php', array());
+        $this -> content = $this -> Template('v/V_EditLink.php', array('link' => $Link));
     }
 
     public function action_logout()
