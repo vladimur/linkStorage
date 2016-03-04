@@ -51,7 +51,7 @@ class M_Users
         $first_name = trim(htmlspecialchars($first_name));
         $last_name = trim(htmlspecialchars($last_name));
 
-        $query = "SELECT * FROM users WHERE login = '$login'";
+        $query = "SELECT * FROM users WHERE login = '$login' UNION SELECT * FROM users WHERE e_mail = '$e_mail'";
         $result = $this -> msql -> Select($query);
         $error = $result[0];
 

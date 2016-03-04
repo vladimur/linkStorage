@@ -28,6 +28,11 @@ class C_linkStorageUser extends C_Base
 
     public function action_edit_links()
     {
+
+        $links_id = $this->params[2];
+        var_dump($links_id);
+
+
         $this -> content = $this -> Template('v/V_EditLink.php', array());
     }
 

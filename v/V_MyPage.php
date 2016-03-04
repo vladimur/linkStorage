@@ -3,34 +3,40 @@
 
     <?php
 
-    echo "-------------------------------------------";
+    if (empty($links)) {
 
-    foreach($links as $link) {
+        echo "You have no links, yet :(" . '<br>' . "To add you first links click " . '<a href="/user/add_links">here</a>';
 
-        echo "<table>";
-
-        foreach( $link as $key => $value) {
-
-            echo "<tr>";
-
-            if ($key != 'status' && $key != 'id') {
-                echo "<td>" . $key . "</td><td>&nbsp;&nbsp;&nbsp;</td><td>" .  $value, "</td>";
-            }
-
-            echo "</tr>";
-
-        }
-
-        echo "<td rowspan='2'>" . '<a href="/user/edit_links">edit</a>' . "</td>";
-
-        echo "<br>";
-
-        echo "</table>";
+    } else {
 
         echo "-------------------------------------------";
 
-    }
+        foreach ($links as $link) {
 
+            echo "<table>";
+
+            foreach ($link as $key => $value) {
+
+                echo "<tr>";
+
+                if ($key != 'status' && $key != 'id') {
+                    echo "<td>" . $key . "</td><td>&nbsp;&nbsp;&nbsp;</td><td>" . $value, "</td>";
+                }
+
+                echo "</tr>";
+
+            }
+
+            echo "<td rowspan='2'>" . '<a href="/user/edit_links/' . $link['id'] . '">edit</a>' . "</td>";
+
+            echo "<br>";
+
+            echo "</table>";
+
+            echo "-------------------------------------------";
+
+        }
+    }
     ?>
 
 </div>

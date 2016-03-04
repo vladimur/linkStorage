@@ -39,6 +39,7 @@ class C_linkStorageAnon extends C_Base
             if ($mUser->Registration($_POST['login'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['e-mail']))
             {
                 $error = false;
+                $this -> redirect("/");
             } else {
                 $error = true;
             }

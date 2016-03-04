@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>linkStorage</title>
-    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="<?=BASE_URL?>style.css" />
     <script src="/js/registratino.js"></script>
     <script src="/js/jquery.js"></script>
 </head>
