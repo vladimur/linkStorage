@@ -55,7 +55,6 @@ class M_linkStorage
         $status = trim(htmlspecialchars($status));
         $id = (int)$id_link;
         if ($id < 0) return false;
-
         if ($title == '' || $content == '') return false;
 
         $links = array();

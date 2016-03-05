@@ -35,8 +35,9 @@ class C_linkStorageUser extends C_Base
 
         if ($_POST['name']) {
 
+            var_dump($_POST);
             $links = M_linkStorage::Instance();
-            $links->Edit($_POST['id'], $_POST['name'], $_POST['address'], $_POST['content'], $_POST['status']);
+            $links->Edit($links_id, $_POST['name'], $_POST['address'], $_POST['description'], $_POST['status']);
 
         }
 
