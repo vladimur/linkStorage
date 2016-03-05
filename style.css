@@ -36,29 +36,29 @@ a:active
     background: #ccc;
 }
 
-#v_registration
+#v_registration, #v_editLinks
 {
     text-align: center;
 }
 
-#v_registration > form > div
+#v_registration > form > div, #v_editLinks > form > div
 {
     margin: 30px;
 }
 
-#v_registration > form > div div
+#v_registration > form > div div, #v_editLinks > form > div div
 {
     display: inline-block;
 }
 
-.reg_form_name
+.reg_form_name, .editLink_name
 {
     width: 200px;
     text-align: right;
     padding-right: 20px;
 }
 
-.reg_form_input input
+.reg_form_input input, .editLink_name input
 {
     border-radius: 10px;
     border: 0;
@@ -117,8 +117,17 @@ button:active
     display: inline-block;
 }
 
+#v_editLinks label {
+    position: relative;
+    top: -11px;
+}
 
-
+#crutch
+{
+    position: relative;
+    top: -11px;
+    left: -23px;
+}
 
 
 
