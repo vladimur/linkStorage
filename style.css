@@ -1,132 +1,92 @@
 body
 {
-    background-image: url("img/background.png");
-    color: white;
+    background-image : url("img/background.png");
+    color            : white;
 }
 
 nav
 {
-    width: 960px;
-    margin: auto;
+    width  : 960px;
+    margin : auto;
 }
 
 #content
 {
-    width: 960px;
-    margin: auto;
+    width  : 960px;
+    margin : auto;
 }
 
 a
 {
-    display: inline-block;
-    padding: 5px;
-    background: #6f0808;
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
+    display         : inline-block;
+    padding         : 5px;
+    background      : #6f0808;
+    color           : white;
+    border-radius   : 10px;
+    text-decoration : none;
 }
 
-a:hover
-{
-    color: #000;
-}
+a:hover  { color      : #000; }
+a:active { background : #ccc; }
 
-a:active
-{
-    background: #ccc;
-}
+#v_registration, #v_editLinks { text-align: center; }
 
-#v_registration, #v_editLinks
-{
-    text-align: center;
-}
-
-#v_registration > form > div, #v_editLinks > form > div
-{
-    margin: 30px;
-}
-
-#v_registration > form > div div, #v_editLinks > form > div div
-{
-    display: inline-block;
-}
+#v_registration > form > div, #v_editLinks > form > div         { margin  : 30px; }
+#v_registration > form > div div, #v_editLinks > form > div div { display : inline-block; }
 
 .reg_form_name, .editLink_name
 {
-    width: 200px;
-    text-align: right;
-    padding-right: 20px;
+    width         : 200px;
+    text-align    : right;
+    padding-right : 20px;
 }
 
 .reg_form_input input, .editLink_name input
 {
-    border-radius: 10px;
-    border: 0;
-    background-color: #cccccc;
-    height: 30px;
-    color: #333;
-    padding-left: 10px;
-    padding-right: 10px;
+    border-radius    : 10px;
+    border           : 0;
+    background-color : #cccccc;
+    height           : 30px;
+    color            : #333;
+    padding-left     : 10px;
+    padding-right    : 10px;
 }
 
 #button
 {
-    text-align: right;
-    width: 670px;
+    text-align : right;
+    width      : 670px;
 }
 
 button
 {
-    border: 0;
-    padding: 5px;
-    background: #6f0808;
-    color: white;
-    border-radius: 10px;
-    outline: none;
+    border        : 0;
+    padding       : 5px;
+    background    : #6f0808;
+    color         : white;
+    border-radius : 10px;
+    outline       : none;
 }
 
-button:hover
+button:hover  { color      : #000; }
+button:active { background : #ccc; }
+
+#v_login { text-align: center; }
+
+#v_login > form > div     { margin  : 30px; }
+#v_login > form > div div { display : inline-block; }
+
+#v_editLinks label
 {
-    color: #000;
-}
-
-button:active
-{
-    background: #ccc;
-}
-
-
-
-
-
-
-
-
-#v_login
-{
-    text-align: center;
-}
-
-#v_login > form > div
-{
-    margin: 30px;
-}
-
-#v_login > form > div div
-{
-    display: inline-block;
-}
-
-#v_editLinks label {
-    position: relative;
-    top: -11px;
+    position : relative;
+    top      : -11px;
 }
 
 #crutch
 {
-    position: relative;
-    top: -11px;
-    left: -23px;
+    position : relative;
+    top      : -11px;
+    left     : -23px;
 }
 
 
