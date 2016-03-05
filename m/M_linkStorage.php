@@ -96,8 +96,7 @@ class M_linkStorage
 
         $link['name']        = $title;
         $link['description'] = $content;
-        $link['user']        = $_COOKIE['greeting'];
-        $link['user']        = $user;
+        $link['author']      = $user;
         $link['address']     = $address;
         $link['status']      = $status;
 

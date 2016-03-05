@@ -29,10 +29,10 @@ a
 a:hover  { color      : #000; }
 a:active { background : #ccc; }
 
-#v_registration, #v_editLinks { text-align: center; }
+#v_registration, #v_editLinks, #v_addLinks { text-align: center; }
 
-#v_registration > form > div, #v_editLinks > form > div         { margin  : 30px; }
-#v_registration > form > div div, #v_editLinks > form > div div { display : inline-block; }
+#v_registration > form > div,     #v_editLinks > form > div,     #v_addLinks > form > div     { margin  : 30px; }
+#v_registration > form > div div, #v_editLinks > form > div div, #v_addLinks > form > div div { display : inline-block; }
 
 .reg_form_name, .editLink_name
 {
@@ -41,7 +41,7 @@ a:active { background : #ccc; }
     padding-right : 20px;
 }
 
-.reg_form_input input, .editLink_name input
+input, textarea
 {
     border-radius    : 10px;
     border           : 0;
@@ -50,6 +50,13 @@ a:active { background : #ccc; }
     color            : #333;
     padding-left     : 10px;
     padding-right    : 10px;
+}
+
+textarea
+{
+    width: 190px;
+    height: 200px;
+    padding-top: 20px;
 }
 
 #button
@@ -76,24 +83,15 @@ button:active { background : #ccc; }
 #v_login > form > div     { margin  : 30px; }
 #v_login > form > div div { display : inline-block; }
 
-#v_editLinks label
+#v_editLinks label, #v_addLinks label
 {
     position : relative;
     top      : -11px;
 }
 
-#crutch
+.crutch
 {
     position : relative;
     top      : -11px;
     left     : -23px;
 }
-
-
-
-
-
-
-
-
-

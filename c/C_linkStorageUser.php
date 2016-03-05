@@ -33,13 +33,38 @@ class C_linkStorageUser extends C_Base
         $Link     = $links -> Get($links_id);
 
         if ( $_POST['name'] ) {
-
-            $links = M_linkStorage::Instance();
-            $links -> Edit( $links_id, $_POST['name'], $_POST['address'], $_POST['description'], $_POST['status'] );
-
+            $success = $links -> Edit( $links_id, $_POST['name'], $_POST['address'], $_POST['description'], $_POST['status'] );
+            $_SESSION['link_edit_success'] = $success;
+            $this  -> redirect('/user/edit_links/' . $links_id);
         }
 
-        $this -> content = $this -> Template( 'v/V_EditLink.php', array('link' => $Link) );
+        $this -> content = $this -> Template( 'v/V_EditLink.php', array( 'link' => $Link, 'success' => $_SESSION['link_edit_success'] ) );
+
+    }
+
+    public function action_add_links()
+    {
+        $links = M_linkStorage::Instance();
+        $user  = M_Users::Instance() -> GetUser();
+
+        if ( $_POST['name'] ) {
+            $success = $links -> Add( $_POST['name'], $_POST['address'], $_POST['description'], $_POST['status'], $user['first_name'] );
+            $_SESSION['link_add_success'] = $success;
+        }
+
+        $this -> content = $this -> Template( 'v/V_AddLink.php', array() );
+
+    }
+
+    public function action_delete_links()
+    {
+
+        $links_id = $this -> params[2];
+        $links    = M_linkStorage::Instance();
+        $Link     = $links -> Delete($links_id);
+
+        $this -> content = $this -> Template( 'v/V_deleteLink.php', array( 'success' => $Link ) );
+
     }
 
     public function action_logout()

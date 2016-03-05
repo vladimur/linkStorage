@@ -1,11 +1,24 @@
 <div id = "v_editLinks">
     <p>Hello, this is the edit link page of linkStorage. Here you can edit your link.</p>
 
+    <?php
+        if ( isset( $success ) && $success ) {
+            echo '<p>Your change was saved</p>';
+            unset($_SESSION['link_edit_success']);
+        }
+    ?>
+
     <form id = "editLink" name = "editLink" method="post">
 
         <div><div class = "editLink_name">Name</div>       <div class = "reg_form_input"><input name = "name"        placeholder = "Введите название ссылки" value="<?=$link['name']?>"        type="text" required></div></div>
         <div><div class = "editLink_name">Address</div>    <div class = "reg_form_input"><input name = "address"     placeholder = "Введите адрес ссылки"    value="<?=$link['address']?>"     type="text" required></div></div>
-        <div><div class = "editLink_name">Description</div><div class = "reg_form_input"><input name = "description" placeholder = "Введите описание ссылки" value="<?=$link['description']?>" type="text"         ></div></div>
+
+        <div>
+            <div class = "editLink_name">Description</div>
+            <div class = "reg_form_input">
+                <textarea name = "description" placeholder = "Введите описание ссылки"><?=$link['description']?></textarea>
+            </div>
+        </div>
 
         <div>
             <div class = "editLink_name" id = "crutch">Status</div>

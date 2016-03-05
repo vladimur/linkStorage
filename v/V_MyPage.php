@@ -1,6 +1,8 @@
 <div>
     <p>Hello, this is the you own page of linkStorage. Here you can see all your links.</p>
 
+    <a href="/user/add_links/">Add link</a><br>
+
     <?php
 
     if (empty($links)) {
@@ -19,7 +21,7 @@
 
                 echo "<tr>";
 
-                if ($key != 'status' && $key != 'id') {
+                if ( $key != 'id' ) {
                     echo "<td>" . $key . "</td><td>&nbsp;&nbsp;&nbsp;</td><td>" . $value, "</td>";
                 }
 
@@ -27,7 +29,7 @@
 
             }
 
-            echo "<td rowspan='2'>" . '<a href="/user/edit_links/' . $link['id'] . '">edit</a>' . "</td>";
+            echo "<td rowspan='3'>" . '<a href="/user/edit_links/' . $link['id'] . '">edit</a>&nbsp;<a href="/user/delete_links/' . $link['id'] . '">delete</a>' . "</td>";
 
             echo "<br>";
 
