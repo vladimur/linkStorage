@@ -46,19 +46,23 @@ class M_linkStorage
         return $result[0];
     }
 
-    public function Edit($id_link, $title, $content)
+    public function Edit($id_link, $title, $address, $content, $status)
     {
 
         $title = trim(htmlspecialchars($title));
+        $address = trim(htmlspecialchars($address));
         $content = trim(htmlspecialchars($content));
+        $status = trim(htmlspecialchars($status));
         $id = (int)$id_link;
         if ($id < 0) return false;
 
         if ($title == '' || $content == '') return false;
 
         $links = array();
-        $links['title'] = $title;
-        $links['content'] = $content;
+        $links['name'] = $title;
+        $links['address'] = $address;
+        $links['description'] = $content;
+        $links['status'] = $status;
 
         $t = "id = '%d'";
         $where = sprintf($t, $id);
