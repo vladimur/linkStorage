@@ -10,8 +10,8 @@
 
     <form id = "editLink" name = "editLink" method="post">
 
-        <div><div class = "editLink_name">Name</div>       <div class = "reg_form_input"><input name = "name"        placeholder = "Введите название ссылки" value="<?=$link['name']?>"        type="text" required></div></div>
-        <div><div class = "editLink_name">Address</div>    <div class = "reg_form_input"><input name = "address"     placeholder = "Введите адрес ссылки"    value="<?=$link['address']?>"     type="text" required></div></div>
+        <div><div class = "editLink_name">Name</div>   <div class = "reg_form_input"><input name = "name"    placeholder = "Введите название ссылки" value="<?=$link['name']?>"    type="text" required></div></div>
+        <div><div class = "editLink_name">Address</div><div class = "reg_form_input"><input name = "address" placeholder = "Введите адрес ссылки"    value="<?=$link['address']?>" type="text" required></div></div>
 
         <div>
             <div class = "editLink_name">Description</div>

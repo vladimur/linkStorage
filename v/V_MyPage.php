@@ -1,7 +1,7 @@
 <div>
     <p>Hello, this is the you own page of linkStorage. Here you can see all your links.</p>
 
-    <a href="/user/add_links/">Add link</a><br>
+    <a href="/user/add_links/">Add link</a>    <a href="/user/my_profile/">View my profile</a><br>
 
     <?php
 

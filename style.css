@@ -29,10 +29,10 @@ a
 a:hover  { color      : #000; }
 a:active { background : #ccc; }
 
-#v_registration, #v_editLinks, #v_addLinks { text-align: center; }
+#v_registration, #v_editLinks, #v_addLinks, #v_editMyProfile { text-align: center; }
 
-#v_registration > form > div,     #v_editLinks > form > div,     #v_addLinks > form > div     { margin  : 30px; }
-#v_registration > form > div div, #v_editLinks > form > div div, #v_addLinks > form > div div { display : inline-block; }
+#v_registration > form > div,     #v_editLinks > form > div,     #v_addLinks > form > div,     #v_editMyProfile > form > div     { margin  : 30px; }
+#v_registration > form > div div, #v_editLinks > form > div div, #v_addLinks > form > div div, #v_editMyProfile > form > div div { display : inline-block; }
 
 .reg_form_name, .editLink_name
 {
