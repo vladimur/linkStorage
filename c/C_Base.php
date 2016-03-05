@@ -9,17 +9,18 @@ abstract class C_Base extends C_Controller
 
     function __construct()
     {
-        $this->needLogin = false;
-        $this->user = M_Users::Instance() -> GetUser();
+        $this -> needLogin = false;
+        $this -> user      = M_Users::Instance() -> GetUser();
     }
 
     protected function before()
     {
-        if($this -> needLogin && $this -> user === null)
+        if ( $this -> needLogin && $this -> user === null ) {
             $this -> redirect('/user/login');
+        }
 
-        $this->title = 'LinkStorage';
-        $this->content = '';
+        $this -> title   = 'LinkStorage';
+        $this -> content = '';
     }
 
     public function render()

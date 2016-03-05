@@ -6,7 +6,7 @@ abstract class C_Controller
     protected abstract function render();
     protected abstract function before();
 
-    public function Request($action, $params)
+    public function Request( $action, $params )
     {
         $this -> params = $params;
         $this -> before();
@@ -24,9 +24,9 @@ abstract class C_Controller
         return $_SERVER['REQUEST_METHOD'] == 'POST';
     }
 
-    protected function Template($fileName, $vars = array())
+    protected function Template( $fileName, $vars = array() )
     {
-        foreach ($vars as $k => $v) {
+        foreach ( $vars as $k => $v ) {
             $$k = $v;
         }
 
@@ -35,15 +35,17 @@ abstract class C_Controller
         return ob_get_clean();
     }
 
-    public function __call($name, $params)
+    public function __call( $name, $params )
     {
         die('404');
     }
 
-    protected function redirect($url)
+    protected function redirect( $url )
     {
-        if($url[0] == '/') $url = BASE_URL.substr($url, 1);
-        header("location: $url");
+        if ( $url[0] == '/' ) {
+            $url = BASE_URL.substr($url, 1);
+        }
+        header( "location: $url" );
         exit();
     }
 }
