@@ -42,6 +42,18 @@ class C_linkStorageUser extends C_Base
 
     }
 
+    public function action_view_links()
+    {
+
+        $links_id = $this -> params[2];
+        $links    = M_linkStorage::Instance();
+        $Link     = $links -> Get($links_id);
+
+        $this -> content = $this -> Template( 'v/V_viewLink.php', array( 'link' => $Link ) );
+
+    }
+
+
     public function action_add_links()
     {
         $links = M_linkStorage::Instance();

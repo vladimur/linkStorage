@@ -13,7 +13,7 @@
 
         <div id = "error_pass"></div>
 
-        <div id = "button"><button id = "submit_form" onclick="checkPass()">Зарегистрироваться</button></div>
+        <div id = "button"><button id = "submit_form" onclick="checkPass()">Save</button></div>
 
     </form>
 </div>

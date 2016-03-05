@@ -21,7 +21,11 @@
 
                 echo "<tr>";
 
-                if ( $key != 'id' ) {
+                if ( $key == 'name' ) {
+                    echo "<td>" . $key . "</td><td>&nbsp;&nbsp;&nbsp;</td><td><a class = 'name_link' href = '/user/view_links/" . $link['id'] . "'>" . $value, "</a></td>";
+                }
+                if ( $key != 'id' && $key != 'name' ) {
+
                     echo "<td>" . $key . "</td><td>&nbsp;&nbsp;&nbsp;</td><td>" . $value, "</td>";
                 }
 
