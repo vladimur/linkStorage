@@ -24,81 +24,84 @@ class M_linkStorage
         return $this -> msql -> Select($query);
     }
 
-    public function AllMy($login)
+    public function AllMy( $login )
     {
-        $login = trim(htmlspecialchars($login));
-        $query = "SELECT * FROM links WHERE author='$login'";
-        $result = $this -> msql -> Select($query);
-        $arr = $result;
-        for($i = 0; $i < count($arr) - 1;$i++) {
-            if ($arr[$i]['user'] == $login) $qwe[] = $arr[$i];
+        $login  = trim( htmlspecialchars( $login ) );
+        $query  = "SELECT * FROM links WHERE author='$login'";
+        $result = $this -> msql -> Select( $query );
+        $arr    = $result;
+
+        for( $i = 0; $i < count($arr) - 1;$i++ ) {
+            if ( $arr[$i]['user'] == $login ) $qwe[] = $arr[$i];
         }
         return $arr;
     }
 
-    public function Get($id)
+    public function Get( $id )
     {
         $id = (int)$id;
-        if ($id < 0) return false;
-        $t = "SELECT * FROM links WHERE id = '%d'";
-        $query = sprintf($t, $id);
-        $result = $this -> msql -> Select($query);
+        if ( $id < 0 ) return false;
+        $t      = "SELECT * FROM links WHERE id = '%d'";
+        $query  = sprintf( $t, $id );
+        $result = $this -> msql -> Select( $query );
         return $result[0];
     }
 
-    public function Edit($id_link, $title, $address, $content, $status)
+    public function Edit( $id_link, $title, $address, $content, $status )
     {
 
-        $title = trim(htmlspecialchars($title));
-        $address = trim(htmlspecialchars($address));
-        $content = trim(htmlspecialchars($content));
-        $status = trim(htmlspecialchars($status));
+        $title   = trim( htmlspecialchars( $title ) );
+        $address = trim( htmlspecialchars( $address ) );
+        $content = trim( htmlspecialchars( $content ) );
+        $status  = trim( htmlspecialchars( $status ) );
+
         $id = (int)$id_link;
-        if ($id < 0) return false;
-        if ($title == '' || $content == '') return false;
+        if ( $id < 0 ) return false;
+        if ( $title == '' || $content == '' ) return false;
 
         $links = array();
-        $links['name'] = $title;
-        $links['address'] = $address;
-        $links['description'] = $content;
-        $links['status'] = $status;
 
-        $t = "id = '%d'";
-        $where = sprintf($t, $id);
-        $this -> msql -> Update('links', $links, $where);
+        $links['name']        = $title;
+        $links['address']     = $address;
+        $links['description'] = $content;
+        $links['status']      = $status;
+
+        $t     =  "id = '%d'";
+        $where =  sprintf( $t, $id );
+        $this  -> msql -> Update( 'links', $links, $where );
         return true;
     }
 
-    public function Delete($id_link)
+    public function Delete( $id_link )
     {
         $id = (int)$id_link;
-        if ($id < 0) return false;
+        if ( $id < 0 ) return false;
 
-        $t = "id = '%d'";
-        $where = sprintf($t, $id);
-        $this -> msql -> Delete('links', $where);
+        $t     =  "id = '%d'";
+        $where =  sprintf( $t, $id );
+        $this  -> msql -> Delete( 'links', $where );
         return true;
     }
 
-
-
-    // чо происходит ?
-    public function Add($title, $content, $user)
+    public function Add( $title, $address, $content, $status, $user )
     {
-        $title = trim(htmlspecialchars($title));
-        $content = trim(htmlspecialchars($content));
+        $title   = trim( htmlspecialchars( $title ) );
+        $content = trim( htmlspecialchars( $content ) );
+        $address = trim( htmlspecialchars( $address ) );
+        $status  = trim( htmlspecialchars( $status ) );
 
-        if ($title == '' || $content =='') return false;
+        if ( $title == '' || $content =='' ) return false;
 
         $link = array();
-        $link['title'] = $title;
-        $link['content'] = $content;
-        $link['user'] = $_COOKIE['greeting'];
-        date_default_timezone_set('Asia/Novosibirsk');
-        $link['data'] = date("Y-m-d H:i:s");
-        $link['user'] = $user;
 
-        $this -> msql -> Insert('links', $link);
+        $link['name']        = $title;
+        $link['description'] = $content;
+        $link['user']        = $_COOKIE['greeting'];
+        $link['user']        = $user;
+        $link['address']     = $address;
+        $link['status']      = $status;
+
+        $this -> msql -> Insert( 'links', $link );
         return true;
     }
 
