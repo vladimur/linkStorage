@@ -93,6 +93,29 @@ class M_Users
         return true;
     }
 
+    public function Edit( $user_id, $first_name, $last_name, $login, $password, $status, $e_mail )
+    {
+
+        if ( $e_mail == '' || $password == '' ) return false;
+
+        $user = array();
+
+        $user['first_name'] = trim( htmlspecialchars( $first_name ) );
+        $user['last_name']  = trim( htmlspecialchars( $last_name ) );
+        $user['login']      = trim( htmlspecialchars( $login ) );
+        $user['password']   = trim( htmlspecialchars( $password ) );
+        $user['status']     = trim( htmlspecialchars( $status ) );
+        $user['e_mail']     = trim( htmlspecialchars( $e_mail ) );
+
+        $id = (int)$user_id;
+        if ( $id < 0 ) return false;
+
+        $t     =  "id = '%d'";
+        $where =  sprintf( $t, $id );
+        $this  -> msql -> Update( 'users', $user, $where );
+        return true;
+    }
+
     // Выход
     public function Logout()
     {

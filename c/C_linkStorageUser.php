@@ -89,12 +89,13 @@ class C_linkStorageUser extends C_Base
     public function action_edit_my_profile()
     {
         $user_id = $this -> params[2];
-        $user  = M_Users::Instance() -> GetUser($user_id);
+        $mUser   = M_Users::Instance();
+        $user    = $mUser -> GetUser($user_id);
 
-        if ( $_POST['name'] ) {
-            //$success = $user -> Edit( $links_id, $_POST['name'], $_POST['address'], $_POST['description'], $_POST['status'] );
-            //$_SESSION['profile_edit_success'] = $success;
-            $this  -> redirect('/user/edit_links/' . $user_id);
+        if ( $_POST['e_mail'] ) {
+            $success = $mUser -> Edit( $user_id, $_POST['first_name'], $_POST['last_name'], $_POST['login'], $_POST['password'], $_POST['status'], $_POST['e_mail'] );
+            $_SESSION['profile_edit_success'] = $success;
+            $this  -> redirect('/user/edit_my_profile/' . $user_id);
         }
 
         $this -> content = $this -> Template( 'v/V_editMyProfile.php', array( 'user' => $user, 'success' => $_SESSION['profile_edit_success'] ) );
