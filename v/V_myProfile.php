@@ -5,7 +5,7 @@
 
         echo "<table>";
 
-        foreach ( $user as $key => $value) {
+        foreach ( $user as $key => $value ) {
 
                 echo "<tr>";
 

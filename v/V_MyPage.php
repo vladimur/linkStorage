@@ -5,7 +5,7 @@
 
     <?php
 
-    if (empty($links)) {
+    if ( empty( $links ) ) {
 
         echo "You have no links, yet :(" . '<br>' . "To add you first links click " . '<a href="/user/add_links">here</a>';
 
@@ -13,11 +13,11 @@
 
         echo "-------------------------------------------";
 
-        foreach ($links as $link) {
+        foreach ( $links as $link ) {
 
             echo "<table>";
 
-            foreach ($link as $key => $value) {
+            foreach ( $link as $key => $value ) {
 
                 echo "<tr>";
 

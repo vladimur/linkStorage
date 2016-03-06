@@ -4,7 +4,7 @@
     <?php
     if ( isset( $_SESSION['link_add_success'] ) && $_SESSION['link_add_success'] ) {
         echo '<p>Your link was added</p>';
-        unset($_SESSION['link_add_success']);
+        unset( $_SESSION['link_add_success'] );
     }
     ?>
 

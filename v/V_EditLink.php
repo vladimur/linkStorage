@@ -4,7 +4,7 @@
     <?php
         if ( isset( $success ) && $success ) {
             echo '<p>Your change was saved</p>';
-            unset($_SESSION['link_edit_success']);
+            unset( $_SESSION['link_edit_success'] );
         }
     ?>
 
@@ -25,8 +25,8 @@
 
             <div class = "reg_form_input">
 
-                <input type="radio" id = "private" name="status" value="private" <?php if ($link['status'] == 'private') {echo 'checked'; } ?> > <label for="private">private</label>
-                <input type="radio" id = "public"  name="status" value="public"  <?php if ($link['status'] == 'public')  {echo 'checked'; } ?> > <label for="public">public</label>
+                <input type="radio" id = "private" name="status" value="private" <?php if ( $link['status'] == 'private' ) {echo 'checked'; } ?> > <label for="private">private</label>
+                <input type="radio" id = "public"  name="status" value="public"  <?php if ( $link['status'] == 'public' )  {echo 'checked'; } ?> > <label for="public">public</label>
 
             </div>
         </div>

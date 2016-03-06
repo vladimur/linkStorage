@@ -5,7 +5,7 @@
 
     echo "<table>";
 
-        foreach ($link as $key => $value) {
+        foreach ( $link as $key => $value ) {
 
         echo "<tr>";
 

@@ -5,15 +5,15 @@
 
         echo "-------------------------------------------";
 
-        foreach($links as $link) {
+        foreach( $links as $link ) {
 
             echo "<table>";
 
-            foreach( $link as $key => $value) {
+            foreach( $link as $key => $value ) {
 
                 echo "<tr>";
 
-                if ($key != 'status' && $key != 'id') {
+                if ( $key != 'status' && $key != 'id' ) {
                     echo "<td>" . $key . "</td><td>&nbsp;&nbsp;&nbsp;</td><td>" .  $value, "</td>";
                 }
 
